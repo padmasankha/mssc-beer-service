@@ -2,10 +2,12 @@ package guru.springframework.msscbeerservice.web.controller;
 
 import com.sun.net.httpserver.Headers;
 import guru.springframework.msscbeerservice.web.model.BeerDto;
+import guru.springframework.msscbeerservice.web.model.BeerStyleEnum;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
@@ -20,7 +22,11 @@ public class BeerController {
     public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId){
 
 //        Todo: Impl
-        return new ResponseEntity<>(BeerDto.builder().build(), HttpStatus.OK);
+        return new ResponseEntity<>(BeerDto.builder()
+                .beerStyle(BeerStyleEnum.ALE)
+                .upc("12L")
+                .price(new BigDecimal(12.4))
+                .build(), HttpStatus.OK);
     }
 
     @PostMapping
